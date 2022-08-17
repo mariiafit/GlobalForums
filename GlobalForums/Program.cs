@@ -1,4 +1,6 @@
+using GlobalForums.Data.Domains.Services;
 using GlobalForums.Data.Persistance.Context;
+using GlobalForums.Service.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,6 +15,10 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IForum, ForumService>();
+
+builder.Services.AddMvc();
 
 var app = builder.Build();
 
