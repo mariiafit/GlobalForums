@@ -1,4 +1,4 @@
-﻿using GlobalForums.Models;
+﻿using GlobalForums.Domains.Models.ErrorViewModel;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -27,6 +27,17 @@ namespace GlobalForums.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is HomeController controller &&
+                   EqualityComparer<ILogger<HomeController>>.Default.Equals(_logger, controller._logger);
+        }
+
+        public override int GetHashCode()
+        {
+            throw new NotImplementedException();
         }
     }
 }

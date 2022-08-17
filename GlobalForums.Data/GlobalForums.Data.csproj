@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Domains\Services\" />
     <Folder Include="Tools\" />
   </ItemGroup>
 
