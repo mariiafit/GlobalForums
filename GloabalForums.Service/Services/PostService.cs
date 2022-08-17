@@ -1,6 +1,7 @@
 ﻿using GlobalForums.Data.Domains.Models;
 using GlobalForums.Data.Domains.Services;
 using GlobalForums.Data.Persistance.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace GlobalForums.Service.Services
 {
@@ -40,7 +41,11 @@ namespace GlobalForums.Service.Services
 
         public Post GetById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Posts.Where(post => post.Id == id)
+                .Include(post => post.User)
+                .Include(post => post.Replies).ThenInclude(reply => reply.User)
+                .Include(post => post.Forum)
+                .First();
         }
 
         public IEnumerable<Post> GetFilteredPosts(Forum forum, string searchQuery)

@@ -2,13 +2,13 @@
 
 <h1>Welcome to the @Model.Forum.Title Forum!</h1>
 
-<span id="headingBtn">
+@*<span id="headingBtn">
     <a asp-controller="Post"
        asp-action="Create"
        asp-route-id=@Model.Forum.Id class="btn btn-newPost">
         Create Post
     </a>
-</span>
+</span>*@
 
 @if (Model.Posts.Any())
 {
