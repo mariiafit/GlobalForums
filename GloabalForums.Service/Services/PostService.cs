@@ -1,10 +1,18 @@
 ﻿using GlobalForums.Data.Domains.Models;
 using GlobalForums.Data.Domains.Services;
+using GlobalForums.Data.Persistance.Context;
 
 namespace GlobalForums.Service.Services
 {
     public class PostService : IPost
     {
+        private readonly ApplicationDbContext _context;
+
+        public PostService(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
         public Task Add(Post post)
         {
             throw new NotImplementedException();
@@ -52,7 +60,9 @@ namespace GlobalForums.Service.Services
 
         public IEnumerable<Post> GetPostsByForum(int id)
         {
-            throw new NotImplementedException();
+            return _context.Forums
+                .Where(forum => forum.Id == id)
+                .First().Posts;
         }
     }
 }
